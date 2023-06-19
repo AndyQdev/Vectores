@@ -1,0 +1,169 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 387
+  ClientWidth = 813
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 94
+    Top = 8
+    Width = 7
+    Height = 29
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object SGVector: TStringGrid
+    Left = 40
+    Top = 48
+    Width = 737
+    Height = 129
+    ColCount = 1
+    DefaultRowHeight = 32
+    FixedCols = 0
+    RowCount = 2
+    FixedRows = 0
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goFixedRowDefAlign]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object ScrollBar1: TScrollBar
+    Left = 40
+    Top = 183
+    Width = 737
+    Height = 17
+    Max = 128
+    Min = 1
+    PageSize = 0
+    Position = 1
+    TabOrder = 1
+    OnChange = ScrollBar1Change
+  end
+  object Button1: TButton
+    Left = 8
+    Top = 232
+    Width = 169
+    Height = 41
+    Caption = 'Cargar Valor Real'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Trebuchet MS'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 608
+    Top = 232
+    Width = 169
+    Height = 41
+    Caption = 'Descargar'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Trebuchet MS'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+    TabOrder = 3
+    OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 200
+    Top = 232
+    Width = 186
+    Height = 41
+    Caption = 'Cargar Valor Random'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Trebuchet MS'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+    TabOrder = 4
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 408
+    Top = 232
+    Width = 169
+    Height = 41
+    Caption = 'Cargar String'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Trebuchet MS'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+    TabOrder = 5
+    OnClick = Button4Click
+  end
+  object MainMenu1: TMainMenu
+    Left = 32
+    object Metodos1: TMenuItem
+      Caption = 'Alg Busqueda'
+      object Secuencial1: TMenuItem
+        Caption = 'Secuencial'
+        OnClick = Secuencial1Click
+      end
+      object Binaria1: TMenuItem
+        Caption = 'Binaria'
+        OnClick = Binaria1Click
+      end
+    end
+    object AlgOrdenamiento1: TMenuItem
+      Caption = 'Alg Ordenamiento'
+      object Intercambio1: TMenuItem
+        Caption = 'Intercambio'
+        OnClick = Intercambio1Click
+      end
+      object Burbuja1: TMenuItem
+        Caption = 'Burbuja'
+        OnClick = Burbuja1Click
+      end
+      object Seleccion1: TMenuItem
+        Caption = 'Seleccion'
+        OnClick = Seleccion1Click
+      end
+      object shell1: TMenuItem
+        Caption = 'shell'
+        OnClick = shell1Click
+      end
+      object MegerSort1: TMenuItem
+        Caption = 'MegerSort'
+        OnClick = MegerSort1Click
+      end
+      object QuickSort1: TMenuItem
+        Caption = 'QuickSort'
+        OnClick = QuickSort1Click
+      end
+    end
+    object String1: TMenuItem
+      Caption = 'STRING'
+      object Inssertarstring1: TMenuItem
+        Caption = 'Inssertar string'
+        OnClick = Inssertarstring1Click
+      end
+    end
+  end
+end

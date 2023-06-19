@@ -1,0 +1,140 @@
+unit UCvector;
+
+interface
+uses Sysutils;
+const MaxE = 1024;
+Type
+ vector= class
+ private
+    dimension: word;
+    Elementos: Array[1..MaxE]of real;
+ public
+    procedure Redimensionar(d: word);
+    Function GetDim: Word;
+    procedure AddElement(e: Real);
+    procedure ModElement(P: word; e: real);
+    procedure InsElement(p: word; e: real);
+    procedure DelElemenFinal;
+    procedure IntercambioElemento(i,j: word);
+    Function GetElement(p: word): real;
+
+    //Alg de busqueda
+    Function BusquedaSec(e: real): word;
+    Function BusquedaBin(e: real): word; //solo se aplica para numeros ordenados
+    //Alg De ordenacion
+    Procedure OrdIntercambio;
+    Procedure OrdBurbuja;
+    procedure OrdSeleccion;
+end;
+implementation
+
+{ vector }
+
+procedure vector.AddElement(e: Real);
+begin
+ elementos[dimension]:= e;
+end;
+
+function vector.BusquedaBin(e: real): word;
+var
+   i,f,pos,m: word;
+begin
+ i:= 1; f:= dimension; pos:=0;
+ while (i<=f)and(pos=0) do begin
+      m:= (i+f)div 2;
+      if elementos[m]=e then
+         pos:=m
+      else if elementos[m]>e then
+         f:=m-1
+      else
+         i:= m+1;
+ end;
+ result:= pos;
+end;
+
+function vector.BusquedaSec(e: real): word;
+var
+   i: word;
+begin
+ i:=1;
+ while (i<=dimension)and(elementos[i]<>e) do
+       inc(i);
+ if i>dimension then result:=0
+ else
+    result:= i;
+end;
+
+procedure vector.DelElemenFinal;
+begin
+ Elementos[dimension]:= elementos[dimension+1];
+ dec(dimension);
+end;
+
+procedure vector.ReDimensionar(d: word);
+begin
+ dimension:= d;
+end;
+
+function vector.GetDim: Word;
+begin
+ result:= Dimension;
+end;
+
+function vector.GetElement(p: word): real;
+begin
+ result:= Elementos[p];
+end;
+
+procedure vector.InsElement(p: word; e: real);
+begin
+
+end;
+
+procedure vector.IntercambioElemento(i,j: word);
+var aux: real;
+begin
+ aux:= Elementos[i];
+ Elementos[i]:= elementos[j];
+ Elementos[j]:= aux;
+end;
+
+procedure vector.ModElement(P: word; e: real);
+begin
+ if (p>0)and(p<=dimension) then begin
+     elementos[p]:= e;
+ end Else raise Exception.Create('Posicion invalida');
+end;
+
+procedure vector.OrdBurbuja;
+var i,j: word;
+begin
+for I := dimension downto 2 do
+    for j := 1 to i-1 do
+        if elementos[j]>elementos[j+1] then
+           IntercambioElemento(j,j+1);
+end;
+
+procedure vector.OrdIntercambio;
+var i,j: byte;
+begin
+ for I := 1 to dimension-1 do
+    for j := i+1 to dimension do
+        if Elementos[i]>Elementos[j] then begin
+           intercambioElemento(i,j);
+        end;
+end;
+
+procedure vector.OrdSeleccion;
+var k,i,j: word;
+begin
+ for I := 1 to dimension-1 do begin
+    k:= i;
+     for j := i+1 to dimension do
+         if elementos[k]>elementos[j] then
+            k:=j;
+   if k>i then
+      intercambioElemento(k,i);
+ end;
+end;
+
+end.

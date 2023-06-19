@@ -1,0 +1,167 @@
+unit UCVectorString;
+
+interface
+uses math, sysutils;
+const MaxE=1024; Separador =[' ',';','.'];
+Type
+ VectorString= class
+   private
+    elementos: array [1..MaxE]of string;
+    dimension: word;
+   public
+    procedure Redimensionar(d: word);
+    Function GetDim: Word;
+    procedure AddElement(s: string);
+    procedure ModElement(P: word; s: string);
+    procedure InsElement(p: word; s: string);
+    procedure DelElemenFinal;
+    procedure IntercambioElemento(i,j: word);
+    Function GetElement(p: word): string;
+    Procedure OrdDescendente; //Utilizamos el metodo MerGuerSort
+    Procedure Mezcla(i,m,f: word);
+    procedure Msort(i,f: word);
+    Function PalabrasNorepetidas: string;
+    Function NextPalabra(var i: word; cadena: string): string;
+ end;
+implementation
+
+{ VectorString }
+
+procedure VectorString.AddElement(s: string);
+begin
+ inc(dimension);
+ elementos[dimension]:=s;
+end;
+
+procedure VectorString.DelElemenFinal;
+begin
+ elementos[dimension]:= elementos[dimension+1];
+ dec(dimension);
+end;
+
+function VectorString.GetDim: Word;
+begin
+ result:= dimension;
+end;
+
+function VectorString.GetElement(p: word): string;
+begin
+ result:= elementos[p];
+end;
+
+procedure VectorString.InsElement(p: word; s: string);
+var I: word;
+begin
+ if (p>0)and (p<=dimension) then begin
+   inc(dimension);
+     for I := dimension downto p+1 do
+         elementos[dimension]:= elementos[dimension-1];
+   elementos[p]:= s;
+ end Else raise Exception.Create('Poaicion invalida');
+end;
+
+procedure VectorString.IntercambioElemento(i, j: word);
+begin
+
+end;
+
+procedure VectorString.ModElement(P: word; s: string);
+begin
+ elementos[p]:= s;
+end;
+
+procedure VectorString.Msort(i, f: word);
+var m: word;
+begin
+ if i<f then begin
+    m:=(i+f)div 2;
+    Msort(i,m);
+    Msort(m+1,f);
+    Mezcla(i,m,f);
+ end;
+end;
+
+procedure VectorString.OrdDescendente;
+begin
+ Msort(1,dimension);
+end;
+
+function VectorString.PalabrasNorepetidas: string;
+var
+   Vaux: array[1..MaxE] of string;
+   i,k,t,j: word;
+   cad: string;
+begin
+ t:=1;
+ for I := 1 to dimension do begin
+    k:=1;
+     while k<=length(elementos[i]) do begin
+       Vaux[t]:= NextPalabra(k,elementos[i]);
+       inc(t);
+     end;
+ end;
+ k:=1; dec(t);
+ while k<t do
+ Begin
+    for I := k+1 to t do
+        if Vaux[k]=Vaux[i] then begin
+           for j := i to t do
+               Vaux[j]:= Vaux[j+1];
+           dec(t);
+        end;
+   inc(k);
+ End;
+ cad:='';
+ for I := 1 to t do
+     cad:= cad+' '+vaux[i];
+ result:=cad;
+end;
+
+procedure vectorString.Mezcla(i, m, f: word);
+var
+   VT: array[1..maxE]of string;
+   k,L,t,Y :word;
+begin
+ k:=i; L:= m+1; t:=1;
+ while (k<=m)and(L<=f) do
+ Begin
+   if elementos[k][1]>elementos[L][1] then begin
+      VT[t]:= Elementos[L]; inc(L);
+   end else begin
+      VT[t]:= Elementos[K]; inc(K);
+   end;
+   inc(t);
+ End;
+ while k<=m do begin
+     VT[t]:= elementos[k];
+     inc(t); inc(K);
+ end;
+  while L<=F do begin
+     VT[t]:= elementos[L];
+     inc(t); inc(L);
+ end;
+ t:=1;
+ for Y := i to F do begin
+    Elementos[Y]:=VT[t];
+    inc(t);
+ end;
+
+end;
+procedure VectorString.Redimensionar(d: word);
+begin
+ dimension:= D;
+end;
+function VectorString.NextPalabra(var i: word; cadena: string): string;
+var
+   s: string;
+begin
+  while (i<= length(cadena)) and (cadena[i] in separador) do
+         inc(i);
+ s:='';
+  while (I<= length(cadena)) and (not(cadena[i] in separador)) do begin
+    s:= s + cadena[i];
+    inc(i);
+  end;
+ result:= s;
+end;
+end.

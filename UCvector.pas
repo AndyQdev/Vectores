@@ -1,0 +1,238 @@
+unit UCvector;
+
+interface
+uses Sysutils;
+const MaxE = 1024;
+Type
+ vector= class
+ private
+    dimension: word;
+    Elementos: Array[1..MaxE]of real;
+ public
+    procedure Redimensionar(d: word);
+    Function GetDim: Word;
+    procedure AddElement(e: Real);
+    procedure ModElement(P: word; e: real);
+    procedure InsElement(p: word; e: real);
+    procedure DelElemenFinal;
+    procedure IntercambioElemento(i,j: word);
+    Function GetElement(p: word): real;
+    //Alg de busqueda
+    Function BusquedaSec(e: real): word;
+    Function BusquedaBin(e: real): word; //solo se aplica para numeros ordenados
+    //Alg De ordenacion
+    Procedure OrdIntercambio;
+    Procedure OrdBurbuja;
+    procedure OrdSeleccion;
+    procedure OrdShell;
+    procedure Mezcla(i,m,f: word);
+    Procedure Msort(i,f:word);
+    procedure MergerSort;
+    procedure Qsort(i,f: word);
+    procedure QuickSOrt;
+end;
+implementation
+
+{ vector }
+
+procedure vector.AddElement(e: Real);
+begin
+ elementos[dimension]:= e;
+end;
+
+function vector.BusquedaBin(e: real): word;
+var
+   i,f,pos,m: word;
+begin
+ i:= 1; f:= dimension; pos:=0;
+ while (i<=f)and(pos=0) do begin
+      m:= (i+f)div 2;
+      if elementos[m]=e then
+         pos:=m
+      else if elementos[m]>e then
+         f:=m-1
+      else
+         i:= m+1;
+ end;
+ result:= pos;
+end;
+
+function vector.BusquedaSec(e: real): word;
+var
+   i: word;
+begin
+ i:=1;
+ while (i<=dimension)and(elementos[i]<>e) do
+       inc(i);
+ if i>dimension then result:=0
+ else
+    result:= i;
+end;
+
+procedure vector.DelElemenFinal;
+begin
+ Elementos[dimension]:= elementos[dimension+1];
+ dec(dimension);
+end;
+
+procedure vector.ReDimensionar(d: word);
+begin
+ dimension:= d;
+end;
+
+function vector.GetDim: Word;
+begin
+ result:= Dimension;
+end;
+
+function vector.GetElement(p: word): real;
+begin
+ result:= Elementos[p];
+end;
+
+procedure vector.InsElement(p: word; e: real);
+begin
+
+end;
+
+procedure vector.IntercambioElemento(i,j: word);
+var aux: real;
+begin
+ aux:= Elementos[i];
+ Elementos[i]:= elementos[j];
+ Elementos[j]:= aux;
+end;
+
+procedure vector.MergerSort;
+begin
+  Msort(1,dimension);
+end;
+
+procedure vector.Mezcla(i, m, f: word);
+var
+   VT: array[1..maxE]of real;
+   k,L,t,Y :word;
+begin
+ k:=i; L:= m+1; t:=1;
+ while (k<=m)and(L<=f) do
+ Begin
+   if elementos[k]>elementos[L] then begin
+      VT[t]:= Elementos[L]; inc(L);
+   end else begin
+      VT[t]:= Elementos[K]; inc(K);
+   end;
+   inc(t);
+ End;
+ while k<=m do begin
+     VT[t]:= elementos[k];
+     inc(t); inc(K);
+ end;
+  while L<=F do begin
+     VT[t]:= elementos[L];
+     inc(t); inc(L);
+ end;
+ t:=1;
+ for Y := i to F do begin
+    Elementos[Y]:=VT[t];
+    inc(t);
+ end;
+
+end;
+
+procedure vector.ModElement(P: word; e: real);
+begin
+ if (p>0)and(p<=dimension) then begin
+     elementos[p]:= e;
+ end Else raise Exception.Create('Posicion invalida');
+end;
+
+procedure vector.Msort(i, f: word);
+var m: word;
+begin
+ if i<f then begin
+    m:=(i+f)div 2;
+    Msort(i,m);
+    Msort(m+1,f);
+    Mezcla(i,m,f);
+ end;
+end;
+
+procedure vector.OrdBurbuja;
+var i,j: word;
+begin
+for I := dimension downto 2 do
+    for j := 1 to i-1 do
+        if elementos[j]>elementos[j+1] then
+           IntercambioElemento(j,j+1);
+end;
+
+procedure vector.OrdIntercambio;
+var i,j: byte;
+begin
+ for I := 1 to dimension-1 do
+    for j := i+1 to dimension do
+        if Elementos[i]>Elementos[j] then begin
+           intercambioElemento(i,j);
+        end;
+end;
+
+procedure vector.OrdSeleccion;
+var k,i,j: word;
+begin
+ for I := 1 to dimension-1 do begin
+    k:= i;
+     for j := i+1 to dimension do
+         if elementos[k]>elementos[j] then
+            k:=j;
+   if k>i then
+      intercambioElemento(k,i);
+ end;
+end;
+
+procedure vector.OrdShell;
+var i,j,factor: word; bandera: boolean;
+begin
+ factor:= Dimension div 2;
+ while factor>0 do
+ Begin
+  i:=1; bandera:= false;
+    while i<=dimension-factor do
+    Begin
+       if elementos[i]>elementos[i+factor] then begin
+          intercambioElemento(i,i+factor);
+          bandera:=true;
+       end;
+      inc(i);
+    End;
+   if Bandera=false then
+      factor:= factor div 2;
+ End;
+end;
+
+procedure vector.Qsort(i, f: word);
+var  izquier, dere: word; m: real;
+begin
+ izquier:= i; dere:= f;
+ m:= trunc(elementos[i]+elementos[f]) div 2;
+ repeat
+  while elementos[i]<m do
+        inc(i);
+  while elementos[f]>m do
+       dec(f);
+  if i<=f then begin
+     intercambioELemento(i,f);
+     inc(i); dec(f);
+  end;
+ until i>f;
+ if izquier<f then
+    Qsort(izquier, f);
+ if i<dere then
+    Qsort(i,dere);
+end;
+
+procedure vector.QuickSOrt;
+begin
+ Qsort(1,dimension);
+end;
+
+end.

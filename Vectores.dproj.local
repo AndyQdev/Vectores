@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/04/10 18:08:46.000.241,=D:\Proyectos delphi\Unit1.pas</Transaction>
+    <Transaction>2022/09/14 13:23:19.000.413,=D:\Proyectos delphi\Unit1.pas</Transaction>
+    <Transaction>2022/10/22 08:58:07.000.872,=D:\Proyectos delphi\Unit1.pas</Transaction>
+    <Transaction>2022/10/28 17:20:31.000.605,=D:\Proyectos delphi\Unit1.pas</Transaction>
+    <Transaction>2022/10/28 17:21:02.000.587,=D:\Proyectos delphi\Unit2.pas</Transaction>
+    <Transaction>2022/10/28 18:55:29.000.153,D:\Universidad\Clases\Programacion 1\Vecoters\UCvector.pas=D:\Proyectos delphi\Unit2.pas</Transaction>
+    <Transaction>2022/10/28 18:55:37.000.478,D:\Universidad\Clases\Programacion 1\Vecoters\FormVector.dfm=D:\Proyectos delphi\Unit1.dfm</Transaction>
+    <Transaction>2022/10/28 18:55:37.000.478,D:\Universidad\Clases\Programacion 1\Vecoters\FormVector.pas=D:\Proyectos delphi\Unit1.pas</Transaction>
+    <Transaction>2022/10/28 18:55:42.000.679,D:\Universidad\Clases\Programacion 1\Vecoters\Vectores.dproj=D:\Proyectos delphi\Project1.dproj</Transaction>
+    <Transaction>2022/12/11 18:58:48.000.063,=D:\Universidad\Clases\Programacion 1\Vecoters\Unit1.pas</Transaction>
+    <Transaction>2022/12/11 19:02:29.000.158,D:\Universidad\Clases\Programacion 1\Vecoters\UCVectorString.pas=D:\Universidad\Clases\Programacion 1\Vecoters\Unit1.pas</Transaction>
+  </Transactions>
+</BorlandProject>
